@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Support Network — How NZ agencies help businesses go global</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3EFE6;
+    --surface: #FFFFFF;
+    --surface-2: #EAE4D6;
+    --ink: #21302A;
+    --ink-soft: #4B5750;
+    --govt: #2F5D8A;
+    --govt-bg: #E4ECF3;
+    --nongovt: #A6572A;
+    --nongovt-bg: #F3E6DA;
+    --good: #3F7859;
+    --good-bg: #E1EEE6;
+    --bad: #B23A3A;
+    --bad-bg: #F5E2E2;
+    --line: #DAD3C2;
+    --radius: 14px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #1B211D;
+      --surface: #242B26;
+      --surface-2: #2D352F;
+      --ink: #EDE9DD;
+      --ink-soft: #B7C0B9;
+      --govt-bg: #223244;
+      --nongovt-bg: #3A2A1E;
+      --good-bg: #1E3327;
+      --bad-bg: #3A2222;
+      --line: #3A4239;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1B211D;
+    --surface: #242B26;
+    --surface-2: #2D352F;
+    --ink: #EDE9DD;
+    --ink-soft: #B7C0B9;
+    --govt-bg: #223244;
+    --nongovt-bg: #3A2A1E;
+    --good-bg: #1E3327;
+    --bad-bg: #3A2222;
+    --line: #3A4239;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  h1, h2, h3, .display { font-family: 'Fraunces', ui-serif, Georgia, serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+    max-width: 60ch;
+  }
+  h1.display {
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0 0 14px;
+    max-width: 18ch;
+  }
+  .hero-sub {
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .stat-row {
+    display: flex;
+    gap: 36px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .stat b {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem;
+    display: block;
+    line-height: 1;
+  }
+  .stat span {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+
+  nav.tabs {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    background: var(--bg);
+    z-index: 10;
+    border-bottom: 1px solid var(--line);
+  }
+  nav.tabs .wrap {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding-top: 6px;
+  }
+  .tab-btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    padding: 14px 16px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--govt); }
+  .tab-btn:focus-visible, button:focus-visible, a:focus-visible, .card:focus-visible {
+    outline: 2px solid var(--govt);
+    outline-offset: 2px;
+  }
+
+  main { padding: 36px 0 80px; }
+  section.panel { display: none; }
+  section.panel.active { display: block; animation: fadein .25s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    section.panel.active { animation: none; }
+  }
+
+  h2.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .section-intro {
+    color: var(--ink-soft);
+    max-width: 65ch;
+    margin: 0 0 26px;
+  }
+
+  .group-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 30px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .group-label:first-of-type { margin-top: 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.govt { background: var(--govt); }
+  .dot.nongovt { background: var(--nongovt); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .card .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+  .tag.govt { background: var(--govt-bg); color: var(--govt); }
+  .tag.nongovt { background: var(--nongovt-bg); color: var(--nongovt); }
+  .card h3 { margin: 0 0 6px; font-size: 1.08rem; font-weight: 600; }
+  .card .role { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+  .card .detail {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .card.open .detail { display: block; }
+  .card .more-link { font-size: 0.82rem; color: var(--govt); font-weight: 600; margin-top: 10px; display: inline-block; }
+
+  /* Match It */
+  .match-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 640px) { .match-layout { grid-template-columns: 1fr; } }
+  .match-col h3 { font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 10px; font-weight: 600; }
+  .match-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.94rem;
+  }
+  .match-item.selected { border-color: var(--govt); box-shadow: 0 0 0 2px var(--govt-bg); }
+  .match-item.correct { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .match-item.incorrect { background: var(--bad-bg); border-color: var(--bad); }
+  .match-item.matched { opacity: 0.55; cursor: default; }
+  .match-status {
+    margin-top: 18px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btn.ghost { background: none; color: var(--ink); border: 1px solid var(--line); }
+
+  /* Case studies */
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .case-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .case-card h3 { margin: 0 0 6px; font-size: 1.08rem; }
+  .case-card .strategy {
+    font-size: 0.72rem; font-weight: 600; text-transform: none;
+    color: var(--govt); background: var(--govt-bg);
+    display: inline-block; padding: 3px 9px; border-radius: 100px; margin-bottom: 10px;
+  }
+  .case-card p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* Watch */
+  .link-list { display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+  .link-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .link-card b { display: block; font-size: 0.98rem; margin-bottom: 3px; }
+  .link-card span { font-size: 0.86rem; color: var(--ink-soft); }
+
+  footer { border-top: 1px solid var(--line); padding: 22px 0 calc(30px + env(safe-area-inset-bottom, 0px)); color: var(--ink-soft); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">NCEA Level 3 Business Studies</p>
+    <h1 class="display">Who helps a NZ business go global?</h1>
+    <p class="hero-sub">New Zealand's domestic market is just 5 million people — most businesses that want to grow have to look overseas. Here's the network of organisations that helps them do it, and the real NZ businesses that have used them.</p>
+    <div class="stat-row">
+      <div class="stat"><b>7</b><span>government agencies</span></div>
+      <div class="stat"><b>9</b><span>non-government agencies</span></div>
+      <div class="stat"><b>9</b><span>real NZ business examples</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="agencies">Agencies</button>
+    <button class="tab-btn" data-tab="match">Match It</button>
+    <button class="tab-btn" data-tab="strategies">Strategies</button>
+    <button class="tab-btn" data-tab="exam">Exam Practice</button>
+    <button class="tab-btn" data-tab="cases">NZ Success Stories</button>
+    <button class="tab-btn" data-tab="watch">Watch &amp; Learn</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- AGENCIES -->
+  <section class="panel active" id="panel-agencies">
+    <h2 class="section-title">Meet the agencies</h2>
+    <p class="section-intro">Tap a card for more detail. Government agencies are funded and run by the Crown; non-government agencies are independent, often membership- or fee-based.</p>
+
+    <div class="group-label"><span class="dot govt"></span> Government agencies</div>
+    <div class="card-grid" id="grid-govt"></div>
+
+    <div class="group-label"><span class="dot nongovt"></span> Non-government agencies</div>
+    <div class="card-grid" id="grid-nongovt"></div>
+  </section>
+
+  <!-- MATCH -->
+  <section class="panel" id="panel-match">
+    <h2 class="section-title">Match It</h2>
+    <p class="section-intro">Select an agency, then select the description you think matches. Correct pairs lock in green.</p>
+    <div class="match-layout">
+      <div class="match-col">
+        <h3>Agency</h3>
+        <div id="match-agencies"></div>
+      </div>
+      <div class="match-col">
+        <h3>What it does</h3>
+        <div id="match-descriptions"></div>
+      </div>
+    </div>
+    <div class="match-status">
+      <span id="match-score">0 of 16 matched</span>
+      <button class="btn ghost" id="match-reset">Shuffle &amp; restart</button>
+    </div>
+  </section>
+
+  <!-- STRATEGIES -->
+  <section class="panel" id="panel-strategies">
+    <h2 class="section-title">Strategies for going global</h2>
+    <p class="section-intro">Six ways a NZ business can expand overseas, each with a genuine advantage and disadvantage — not just a definition.</p>
+    <div class="card-grid" id="strategy-grid"></div>
+    <div class="case-card" style="margin-top:26px;">
+      <h3 style="margin-bottom:8px;">Your turn: research task</h3>
+      <p>Find ONE strategic alliance or joint venture that was <b>successful</b>, and ONE that was <b>not successful</b>. For each: name the companies, why they joined, what each brought to the venture, and why it succeeded or failed.</p>
+    </div>
+  </section>
+
+  <!-- EXAM PRACTICE -->
+  <section class="panel" id="panel-exam">
+    <h2 class="section-title">Exam practice: business support agencies</h2>
+    <p class="section-intro">NCEA Level 3 Business Studies (91380) genuinely tests this content. Below is the real format from a recent paper, plus two practice questions in the same style.</p>
+    <div class="case-grid" id="exam-grid"></div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="panel" id="panel-cases">
+    <h2 class="section-title">NZ businesses that used this network</h2>
+    <p class="section-intro">Each of these is a real New Zealand business and a real global-expansion strategy — useful evidence for an exam answer.</p>
+    <div class="case-grid" id="case-grid"></div>
+  </section>
+
+  <!-- WATCH -->
+  <section class="panel" id="panel-watch">
+    <h2 class="section-title">Watch &amp; learn</h2>
+    <p class="section-intro">Short official videos and agency websites — open in a new tab.</p>
+    <div class="link-list" id="link-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Built for NCEA Level 3 Business Studies (91379 / 91380 / 91381) — content sourced from NZTE, MFAT and business.govt.nz.</div>
+</footer>
+
+<script>
+const AGENCIES = [
+  { id:'nzte', name:'New Zealand Trade and Enterprise (NZTE)', group:'govt',
+    role:'The Government\'s international business development agency.',
+    detail:'Gives advisors, export-plan workshops, strategic advice, overseas contacts, market research and, in some cases, funding to help NZ businesses grow internationally.' },
+  { id:'mbie', name:'Ministry of Business, Innovation & Employment (MBIE)', group:'govt',
+    role:'Runs business.govt.nz and invests in innovation research.',
+    detail:'Provides practical online resources for businesses via business.govt.nz, invests in innovation research, and publishes economic survey and forecast information businesses can use to plan.' },
+  { id:'mfat', name:'Ministry of Foreign Affairs and Trade (MFAT)', group:'govt',
+    role:'Opens doors overseas through diplomacy and trade agreements.',
+    detail:'Uses its overseas embassy staff and contacts to help businesses, organises events abroad, and negotiates New Zealand\'s free trade agreements and reduces trade restrictions.' },
+  { id:'tnz', name:'Tourism New Zealand', group:'govt',
+    role:'Promotes NZ (and NZ tourism businesses) overseas.',
+    detail:'Promotes New Zealand in key overseas markets, represents NZ businesses at international trade shows, and provides online resources for the tourism sector.' },
+  { id:'coc', name:'NZ Chamber of Commerce', group:'nongovt',
+    role:'Non-profit member support and training.',
+    detail:'A non-profit organisation offering training, advice, information and support to its business members, often at a regional level.' },
+  { id:'exportnz', name:'Export New Zealand', group:'nongovt',
+    role:'Non-profit network for exporters.',
+    detail:'Runs networking events, training and advice specifically for New Zealand exporters, connecting them with peers who\'ve faced the same challenges.' },
+  { id:'schoolexport', name:'NZ School of Export', group:'nongovt',
+    role:'Non-profit training for exporters.',
+    detail:'Provides structured training programmes to build exporting knowledge and skills for businesses new to overseas markets.' },
+  { id:'mentors', name:'Business Mentors New Zealand', group:'nongovt',
+    role:'Volunteer mentors for small-to-medium businesses.',
+    detail:'Pairs SMEs with an experienced volunteer business mentor for guidance, for an annual registration fee of around $225.' },
+  { id:'banks', name:'Banks and finance companies', group:'nongovt',
+    role:'Lend finance for exporting or overseas expansion.',
+    detail:'Provide loans and finance for exporting or overseas growth, usually based on the strength of a business\'s sound business plan.' },
+  { id:'customs', name:'NZ Customs Service', group:'govt',
+    role:'Manages the border for goods entering and leaving NZ.',
+    detail:'Helps businesses navigate import and export procedures, tariffs and compliance requirements when goods cross the border into another country.' },
+  { id:'iponz', name:'Intellectual Property Office of NZ (IPONZ)', group:'govt',
+    role:'Registers and protects trademarks, patents and designs.',
+    detail:'Protects a business\'s brand, inventions and designs through registration, which matters before expanding into a new market where the brand could otherwise be copied.' },
+  { id:'nzvif', name:'NZ Venture Investment Fund (NZVIF)', group:'govt',
+    role:'Government-backed venture capital co-investment.',
+    detail:'A Crown-owned fund that co-invests venture capital and seed funding alongside private investors in high-growth New Zealand businesses, helping fund international expansion.' },
+  { id:'ibc', name:'International Business Council', group:'nongovt',
+    role:'Worldwide network linking business communities.',
+    detail:'Promotes goodwill and connections between business communities globally, acting as a forum to help businesses understand market complexities, language, philosophy and local business practice.' },
+  { id:'ema', name:'EMA Learning', group:'nongovt',
+    role:'Training arm of the Employers and Manufacturers Association.',
+    detail:'Offers training and professional development courses covering compliance, management and export-related skills for businesses.' },
+  { id:'kea', name:'Kea New Zealand', group:'nongovt',
+    role:'Global network of Kiwi expats.',
+    detail:'Connects NZ businesses with a worldwide network of New Zealanders living overseas, providing in-market contacts, advice and mentoring in the countries they\'re based in.' },
+  { id:'icehouse', name:'The Icehouse', group:'nongovt',
+    role:'Auckland-based business incubator and accelerator.',
+    detail:'Runs growth programmes, mentoring and investment readiness support to help NZ startups and owner-managed businesses scale, including into overseas markets.' },
+];
+
+const STRATEGIES = [
+  { name:'Online / e-commerce', def:'Setting up an e-commerce site to sell directly to overseas customers.', pro:'Fast, low-cost entry into a new market with no physical presence needed.', con:'Still requires logistics/shipping to fulfil orders, and can be harder to build local trust than an in-market presence.' },
+  { name:'Exporting', def:'Selling to a foreign business, which then sells the NZ business\'s product in that market.', pro:'Lower risk and lower cost than setting up overseas operations directly.', con:'Exposed to shipping costs, tariffs and exchange rate changes, and less control over how the product is marketed locally.' },
+  { name:'Licensing', def:'Selling a business in the host country the right to manufacture and/or sell the NZ business\'s brand.', pro:'Fast expansion with little capital investment — the licensee takes on local risk and cost.', con:'Less control over brand quality and consistency, plus the risk of the licensee misusing the intellectual property.' },
+  { name:'Franchise', def:'Selling the rights to a business in a host country to operate a NZ brand, with support from the franchisor.', pro:'Rapid growth funded by the franchisee\'s capital, using their existing local market knowledge.', con:'Less day-to-day control than owning the operation, and a poorly performing franchisee can damage the whole brand\'s reputation.' },
+  { name:'Overseas branch', def:'Starting a new, wholly-owned operation in the host country.', pro:'Full control over operations, quality and brand.', con:'High cost and risk, and requires deep understanding of local regulations and culture to succeed.' },
+  { name:'Strategic alliance / joint venture', def:'Partnering with a business in the host country, sharing resources toward a mutually beneficial goal.', pro:'Access to the partner\'s distribution networks, local market knowledge and shared risk.', con:'Potential disputes, cultural misalignment, or being overwhelmed by a larger partner.' },
+];
+
+const CASES = [
+  { name:'Xero', strategy:'Overseas branch + NZTE support', text:'The Wellington-founded accounting software company opened offices in the UK and Australia, with NZTE helping establish contacts and market intelligence in the UK. Australia became Xero\'s largest market by customer numbers ahead of NZ.' },
+  { name:'Zespri', strategy:'Licensing + exporting', text:'Exports NZ-grown kiwifruit worldwide, and also licenses growers in other countries (like Italy and France) to grow Zespri-branded fruit for off-season supply.' },
+  { name:'Fisher & Paykel Healthcare', strategy:'Overseas branches', text:'Manufactures in NZ and exports respiratory and healthcare products worldwide, with its own overseas branches in the US, Europe and Asia handling sales and distribution.' },
+  { name:'Whittaker\'s', strategy:'Exporting + retail partnership', text:'Exports chocolate to Australia, Asia and North America while keeping manufacturing based only in Porirua. Grew its Australian presence partly through a retail partnership with Coles.' },
+  { name:'BurgerFuel', strategy:'Franchising + NZTE Beachheads', text:'Franchised into Iraq, the UAE, Saudi Arabia and Bahrain through master licence agreements, using NZTE\'s Beachheads programme for market entry support.' },
+  { name:'Icebreaker', strategy:'Exporting + partnerships', text:'Grew from exporting merino clothing into partnerships with international retailers, before opening its own overseas stores and eventually being bought by VF Corporation.' },
+  { name:'Allbirds', strategy:'Online / e-commerce first', text:'Entered the US market online before opening physical stores — a clean example of e-commerce-led global expansion.' },
+  { name:'Comvita', strategy:'Joint ventures', text:'Exports manuka honey and uses joint ventures and distribution partnerships in markets like China to navigate local regulation and retail access.' },
+  { name:'Weta Workshop / Weta FX', strategy:'Exporting a service', text:'Sells specialist visual-effects and film production services directly to international studios — exporting expertise rather than a physical product.' },
+];
+
+const LINKS = [
+  { title:'How government agencies can help when you export', site:'business.govt.nz', url:'https://www.business.govt.nz/operations/exporting/how-government-agencies-can-help-when-you-export', desc:'Short official videos (about 1 minute each) on NZTE, MFAT and other export agencies.' },
+  { title:'NZTE — New Zealand Trade and Enterprise', site:'nzte.govt.nz', url:'https://www.nzte.govt.nz', desc:'Official site — services, market guides and exporter resources.' },
+  { title:'MFAT — Ministry of Foreign Affairs and Trade', site:'mfat.govt.nz', url:'https://www.mfat.govt.nz', desc:'Official site — trade agreements and market access information.' },
+  { title:'91380 past papers and assessment reports (NZQA)', site:'nzqa.govt.nz', url:'https://www.nzqa.govt.nz/ncea/assessment/search.do?query=Business+Studies&view=exams&level=03', desc:'Full past exam papers, exemplars and assessment reports for 91379/91380/91381.' },
+];
+
+function initAgencies() {
+  const govtGrid = document.getElementById('grid-govt');
+  const nongovtGrid = document.getElementById('grid-nongovt');
+  AGENCIES.forEach(a => {
+    const card = document.createElement('button');
+    card.className = 'card';
+    card.innerHTML = `
+      <span class="tag ${a.group}">${a.group === 'govt' ? 'Government' : 'Non-government'}</span>
+      <h3>${a.name}</h3>
+      <p class="role">${a.role}</p>
+      <div class="detail">${a.detail}</div>
+      <span class="more-link">Tap for detail</span>
+    `;
+    card.addEventListener('click', () => card.classList.toggle('open'));
+    (a.group === 'govt' ? govtGrid : nongovtGrid).appendChild(card);
+  });
+}
+
+function initStrategies() {
+  const grid = document.getElementById('strategy-grid');
+  STRATEGIES.forEach(s => {
+    const card = document.createElement('button');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3>${s.name}</h3>
+      <p class="role">${s.def}</p>
+      <div class="detail"><b>Advantage:</b> ${s.pro}<br><br><b>Disadvantage:</b> ${s.con}</div>
+      <span class="more-link">Tap for advantage / disadvantage</span>
+    `;
+    card.addEventListener('click', () => card.classList.toggle('open'));
+    grid.appendChild(card);
+  });
+}
+
+const EXAM_QUESTIONS = [
+  {
+    tag: 'From a real 2024 NCEA paper (91380)', biz: 'Neat Sip Botanicals',
+    prompt: 'Neat Sip Botanicals (a Bay of Plenty non-alcoholic spirits producer) is following the growth of overseas non-alcoholic drink brands and considering entering a new international market with support from agencies such as NZTE and Export New Zealand.',
+    parts: [
+      'Choose Neat Sip Botanicals, or a NZ-registered business you\'ve studied in depth. Identify ONE government or non-government agency that could support the business entering a new market.',
+      'Explain one advantage of using this agency to understand the new market.',
+      'Explain how this advantage could help the business successfully enter the new market.',
+    ],
+  },
+  {
+    tag: 'Practice question', biz: 'Whittaker\'s',
+    prompt: 'Whittaker\'s is considering expanding its retail presence further into an Asian market it currently only exports to on a smaller scale.',
+    parts: [
+      'Choose Whittaker\'s, or a NZ-registered business you\'ve studied in depth. Identify ONE government or non-government agency that could support the business entering this market.',
+      'Explain one advantage of using this agency to understand the new market.',
+      'Explain how this advantage could help the business successfully enter the new market.',
+    ],
+  },
+  {
+    tag: 'Practice question', biz: 'BurgerFuel',
+    prompt: 'BurgerFuel is evaluating a franchise agreement to enter a new Middle Eastern market it has not operated in before.',
+    parts: [
+      'Choose BurgerFuel, or a NZ-registered business you\'ve studied in depth. Identify ONE government or non-government agency that could support the business entering this market.',
+      'Explain one advantage of using this agency to understand the new market.',
+      'Explain how this advantage could help the business successfully enter the new market.',
+    ],
+  },
+];
+
+function initExam() {
+  const grid = document.getElementById('exam-grid');
+  EXAM_QUESTIONS.forEach(q => {
+    const div = document.createElement('div');
+    div.className = 'case-card';
+    const partsHtml = q.parts.map((p, i) => `<li style="margin-bottom:8px;">${p}</li>`).join('');
+    div.innerHTML = `
+      <span class="strategy">${q.tag}</span>
+      <h3>${q.biz}</h3>
+      <p style="margin-bottom:12px;">${q.prompt}</p>
+      <ol style="padding-left:18px; margin:0; font-size:0.92rem; color:var(--ink-soft);">${partsHtml}</ol>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function initCases() {
+  const grid = document.getElementById('case-grid');
+  CASES.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'case-card';
+    div.innerHTML = `<span class="strategy">${c.strategy}</span><h3>${c.name}</h3><p>${c.text}</p>`;
+    grid.appendChild(div);
+  });
+}
+
+function initLinks() {
+  const list = document.getElementById('link-list');
+  LINKS.forEach(l => {
+    const a = document.createElement('a');
+    a.className = 'link-card';
+    a.href = l.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML = `<b>${l.title}</b><span>${l.site} — ${l.desc}</span>`;
+    list.appendChild(a);
+  });
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let matchState = { selectedAgency: null, selectedDesc: null, matched: 0, remaining: [] };
+
+function renderMatchColumns() {
+  const agencyCol = document.getElementById('match-agencies');
+  const descCol = document.getElementById('match-descriptions');
+  agencyCol.innerHTML = '';
+  descCol.innerHTML = '';
+
+  // Independently reshuffled every render, including after every single
+  // attempt — so position on screen can never be memorised or used to
+  // eliminate options. Loop guards against (rare) identical orderings.
+  let leftOrder = shuffle(matchState.remaining);
+  let rightOrder = shuffle(matchState.remaining);
+  let guard = 0;
+  while (matchState.remaining.length > 1 && sameOrder(leftOrder, rightOrder) && guard < 10) {
+    rightOrder = shuffle(matchState.remaining);
+    guard++;
+  }
+
+  leftOrder.forEach(a => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.dataset.id = a.id;
+    el.textContent = a.name;
+    el.addEventListener('click', () => selectAgency(el, a));
+    agencyCol.appendChild(el);
+  });
+
+  rightOrder.forEach(a => {
+    const el = document.createElement('div');
+    el.className = 'match-item';
+    el.dataset.id = a.id;
+    el.textContent = a.role;
+    el.addEventListener('click', () => selectDesc(el, a));
+    descCol.appendChild(el);
+  });
+}
+
+function sameOrder(a, b) {
+  return a.every((item, i) => item.id === b[i].id);
+}
+
+function initMatch() {
+  matchState = { selectedAgency: null, selectedDesc: null, matched: 0, remaining: [...AGENCIES] };
+  updateMatchStatus();
+  renderMatchColumns();
+}
+
+function selectAgency(el, a) {
+  document.querySelectorAll('#match-agencies .match-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  matchState.selectedAgency = { el, id: a.id };
+  tryMatch();
+}
+function selectDesc(el, a) {
+  document.querySelectorAll('#match-descriptions .match-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  matchState.selectedDesc = { el, id: a.id };
+  tryMatch();
+}
+function tryMatch() {
+  const { selectedAgency, selectedDesc } = matchState;
+  if (!selectedAgency || !selectedDesc) return;
+  if (selectedAgency.id === selectedDesc.id) {
+    selectedAgency.el.classList.add('correct');
+    selectedDesc.el.classList.add('correct');
+    matchState.matched++;
+    matchState.remaining = matchState.remaining.filter(a => a.id !== selectedAgency.id);
+    matchState.selectedAgency = null;
+    matchState.selectedDesc = null;
+    updateMatchStatus();
+    setTimeout(renderMatchColumns, 350);
+  } else {
+    selectedAgency.el.classList.add('incorrect');
+    selectedDesc.el.classList.add('incorrect');
+    matchState.selectedAgency = null;
+    matchState.selectedDesc = null;
+    // Re-shuffle both columns on a miss too, so students can't use
+    // position/elimination to solve it without knowing the content.
+    setTimeout(renderMatchColumns, 500);
+  }
+}
+function updateMatchStatus() {
+  const status = document.getElementById('match-score');
+  const total = AGENCIES.length;
+  status.textContent = matchState.matched >= total
+    ? `All ${total} matched — nice work!`
+    : `${matchState.matched} of ${total} matched`;
+}
+
+document.getElementById('match-reset').addEventListener('click', initMatch);
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+initAgencies();
+initStrategies();
+initExam();
+initCases();
+initLinks();
+initMatch();
+</script>
+</body>
+</html>
